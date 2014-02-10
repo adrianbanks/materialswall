@@ -13,6 +13,16 @@ namespace Granta.MaterialsWall
     {
         public IEnumerable<T> GetPage(int pageSize, int pageNumber, IEnumerable<T> items)
         {
+            if (pageSize < 1)
+            {
+                throw new ArgumentException("Page size must be a positive integer", "pageSize");
+            }
+            
+            if (pageNumber < 1)
+            {
+                throw new ArgumentException("Page number must be a positive integer", "pageNumber");
+            }
+            
             if (items == null)
             {
                 throw new ArgumentNullException("items");

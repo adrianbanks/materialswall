@@ -12,6 +12,11 @@ namespace Granta.MaterialsWall.Images
     {
         public Bitmap Scale(Bitmap image, double scale)
         {
+            if (image == null)
+            {
+                throw new ArgumentNullException("image");
+            }
+
             var originalSize = image.Size;
             int newWidth = (int) Math.Floor(originalSize.Width * scale);
             int newHeight = (int) Math.Floor(originalSize.Height * scale);

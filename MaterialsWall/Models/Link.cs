@@ -12,13 +12,13 @@ namespace Granta.MaterialsWall.Models
 
         public Link(string url, string text)
         {
-            if (url == null)
+            if (string.IsNullOrWhiteSpace(url))
             {
                 throw new ArgumentNullException("url");
             }
             
             this.url = url;
-            this.text = text ?? url;
+            this.text = string.IsNullOrWhiteSpace(text) ? url : text;
         }
     }
 }

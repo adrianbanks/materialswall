@@ -1,4 +1,4 @@
-﻿using System.Configuration;
+﻿using System;
 
 namespace Granta.MaterialsWall.DataAccess.Excel
 {
@@ -25,6 +25,8 @@ namespace Granta.MaterialsWall.DataAccess.Excel
     {
         private const string SettingPrefix = "ExcelColumnName:";
 
+        private readonly IAppSettingsProvider appSettingsProvider;
+
         public string Visible { get { return GetAppSetting(SettingPrefix + "Visible"); }}
         public string Identifier { get { return GetAppSetting(SettingPrefix + "Identifier"); } }
         public string Name { get { return GetAppSetting(SettingPrefix + "Name"); } }
@@ -41,9 +43,19 @@ namespace Granta.MaterialsWall.DataAccess.Excel
         public string Link3Url { get { return GetAppSetting(SettingPrefix + "Link3Url"); } }
         public string Link3Name { get { return GetAppSetting(SettingPrefix + "Link3Name"); } }
 
+        public ColumnNames(IAppSettingsProvider appSettingsProvider)
+        {
+            if (appSettingsProvider == null)
+            {
+                throw new ArgumentNullException("appSettingsProvider");
+            }
+            
+            this.appSettingsProvider = appSettingsProvider;
+        }
+
         private string GetAppSetting(string name)
         {
-            return ConfigurationManager.AppSettings[name];
+            return appSettingsProvider.GetSetting(name);
         }
     }
 }
