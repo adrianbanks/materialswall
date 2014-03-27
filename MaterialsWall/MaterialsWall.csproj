@@ -309,6 +309,8 @@
     <Content Include="Content\loading.gif" />
     <Content Include="Content\materialswall.jpg" />
     <Content Include="Content\walllabel.css" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="DataAccess\CardFactory.cs" />
     <Compile Include="DataAccess\CardsLoader.cs" />
     <Compile Include="DataAccess\DataFilePathProvider.cs" />
@@ -343,6 +345,7 @@
     </Compile>
     <Compile Include="Images\ThumbnailGenerator.cs" />
     <Compile Include="Models\PageOfCardsModel.cs" />
+    <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Paginator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
