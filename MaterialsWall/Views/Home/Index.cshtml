@@ -1,9 +1,15 @@
-﻿@model IEnumerable<Granta.MaterialsWall.Models.Card>
+﻿@model IEnumerable<Granta.MaterialsWall.Models.WallCard>
 
 @section styles
 {
     @Styles.Render("~/bundles/wallcards")
 }
+
+<div class="navbar">
+    <div class="pull-right">
+        <input id="searchbox" class="search-query" type="text" placeholder="Search" onkeyup="filter('.row .cardholder', this)" />
+    </div>
+</div>
 
 <div id="cardcontainer">
     <div id="cardrow" class="row">

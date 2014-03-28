@@ -154,6 +154,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSettingsConfiguredPaginator.cs" />
     <Compile Include="AppSettingsProvider.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -309,7 +310,8 @@
     <Content Include="Content\loading.gif" />
     <Content Include="Content\materialswall.jpg" />
     <Content Include="Content\walllabel.css" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="CardSearcher.cs" />
+    <Compile Include="CardToWallCardConverter.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="DataAccess\CardFactory.cs" />
     <Compile Include="DataAccess\CardsLoader.cs" />
@@ -345,7 +347,7 @@
     </Compile>
     <Compile Include="Images\ThumbnailGenerator.cs" />
     <Compile Include="Models\PageOfCardsModel.cs" />
-    <Compile Include="Models\SearchResult.cs" />
+    <Compile Include="Models\WallCard.cs" />
     <Compile Include="Paginator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -382,8 +384,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Labels\Index.cshtml" />
     <Content Include="Views\Home\Page.cshtml" />
-    <Content Include="Views\Home\_WallCard.cshtml" />
-    <Content Include="Views\Home\_PageOfCards.cshtml" />
+    <Content Include="Views\Shared\_WallCard.cshtml" />
+    <Content Include="Views\Shared\_PageOfCards.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

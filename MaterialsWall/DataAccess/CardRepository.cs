@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Granta.MaterialsWall.Models;
 
 namespace Granta.MaterialsWall.DataAccess
@@ -7,6 +8,7 @@ namespace Granta.MaterialsWall.DataAccess
     public interface ICardRepository
     {
         IEnumerable<Card> GetCards();
+        IEnumerable<Card> GetCards(Guid[] identifiers);
         Card GetCard(Guid identifier);
     }
 
@@ -37,6 +39,12 @@ namespace Granta.MaterialsWall.DataAccess
         {
             ReloadCardsIfNecessary();
             return cards.Values;
+        }
+
+        public IEnumerable<Card> GetCards(Guid[] identifiers)
+        {
+            ReloadCardsIfNecessary();
+            return identifiers.Any() ? identifiers.Select(GetCard) : GetCards();
         }
 
         public Card GetCard(Guid identifier)

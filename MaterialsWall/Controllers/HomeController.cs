@@ -9,12 +9,11 @@ namespace Granta.MaterialsWall.Controllers
 {
     public sealed class HomeController : Controller
     {
-        private const int PageSize = 12;
-
         private readonly ICardRepository cardRepository;
-        private readonly IPaginator<Card> paginator;
+        private readonly IAppSettingsConfiguredPaginator<Card> paginator;
+        private readonly CardToWallCardConverter cardConverter;
 
-        public HomeController(ICardRepository cardRepository, IPaginator<Card> paginator)
+        public HomeController(ICardRepository cardRepository, IAppSettingsConfiguredPaginator<Card> paginator, CardToWallCardConverter cardConverter)
         {
             if (cardRepository == null)
             {
@@ -25,9 +24,15 @@ namespace Granta.MaterialsWall.Controllers
             {
                 throw new ArgumentNullException("paginator");
             }
+
+            if (cardConverter == null)
+            {
+                throw new ArgumentNullException("cardConverter");
+            }
             
             this.cardRepository = cardRepository;
             this.paginator = paginator;
+            this.cardConverter = cardConverter;
         }
 
         public ActionResult Index()
@@ -43,11 +48,11 @@ namespace Granta.MaterialsWall.Controllers
             return View(model);
         }
 
-        private IEnumerable<Card> GetCardsOnPage(int pageNumber)
+        private IEnumerable<WallCard> GetCardsOnPage(int pageNumber)
         {
             var cards = cardRepository.GetCards().ToList();
-            var pagedCards = paginator.GetPage(PageSize, pageNumber, cards);
-            return pagedCards;
+            var pagedCards = paginator.GetPage(pageNumber, cards);
+            return pagedCards.Select(cardConverter.ToWallCard);
         }
 
         public ActionResult About()

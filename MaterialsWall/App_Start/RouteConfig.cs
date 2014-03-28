@@ -10,6 +10,11 @@ namespace Granta.MaterialsWall
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Search",
+                url: "search/{term}",
+                defaults: new { controller = "Search", action = "Index", term = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{identifier}",
                 defaults: new { controller = "Home", action = "Index", identifier = UrlParameter.Optional },
